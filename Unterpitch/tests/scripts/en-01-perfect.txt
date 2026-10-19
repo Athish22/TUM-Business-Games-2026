@@ -1,0 +1,14 @@
+# en-01-perfect: All points covered at a comfortable pace.
+
+
+[Slide 1]
+Here is the problem. Onboarding a new customer takes three weeks today.
+And our support tickets have doubled since last year.
+
+[Slide 2]
+Our solution is a self-service setup wizard.
+We also add in-app guided tours.
+
+[Slide 3]
+The impact: onboarding is cut to 4 days.
+And ticket volume goes down by 35 percent.

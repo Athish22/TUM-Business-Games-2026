@@ -1,0 +1,6 @@
+# en-03-fillers: Heavy use of um, uh, like, basically, you know, I mean.
+
+
+[Slide 1]
+Um, so, basically, the mobile app is, uh, coming in Q2, you know.
+And, like, the API v2, um, is planned for Q3, I mean, roughly.

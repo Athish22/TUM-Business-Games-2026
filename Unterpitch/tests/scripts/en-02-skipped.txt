@@ -1,0 +1,9 @@
+# en-02-skipped: Two points skipped, one only hinted at.
+
+
+[Slide 1]
+Let me walk you through pricing. We offer three tiers: Basic, Pro and Enterprise.
+There is also a free trial.
+
+[Slide 2]
+For go-to-market we will host a launch event in May.

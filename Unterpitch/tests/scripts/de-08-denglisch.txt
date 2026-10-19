@@ -1,0 +1,7 @@
+# de-08-denglisch: Deutscher Vortrag mit englischen Fachbegriffen (Forecast, Stakeholder, Go-Live).
+
+
+[Folie 1]
+Unser Forecast liegt aktuell über dem Plan.
+Wichtig ist, die Stakeholder früh einzubinden.
+Der Go-Live ist für Dezember geplant.

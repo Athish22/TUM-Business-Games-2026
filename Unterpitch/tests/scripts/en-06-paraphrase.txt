@@ -1,0 +1,5 @@
+# en-06-paraphrase: KNOWN LIMITATION: point said in completely different words.
+
+
+[Slide 1]
+We want ten percent fewer customers leaving us.

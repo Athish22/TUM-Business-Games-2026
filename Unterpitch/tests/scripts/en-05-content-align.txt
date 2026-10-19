@@ -1,0 +1,22 @@
+# en-05-content-align: Five slides, no slide-change timestamps, a repeated term (dark mode) on two slides.
+
+
+[Slide 1]
+Welcome everyone, let me start with a quick team introduction.
+Our goals for today are simple.
+
+[Slide 2]
+First the results. Revenue is up 18 percent.
+Margin stayed stable at 22 percent.
+
+[Slide 3]
+Customer feedback was strong, NPS improved to 51.
+The top request was dark mode.
+
+[Slide 4]
+There are two risks: supplier delays,
+and our currency exposure.
+
+[Slide 5]
+Next steps: we will hire two engineers
+and ship dark mode in June.

@@ -1,0 +1,5 @@
+# de-07-long-sentence: Ein Bandwurmsatz soll als schwer verständlich markiert werden.
+
+
+[Folie 1]
+Die Lieferkette ist derzeit instabil, weil mehrere unserer Zulieferer in Asien mit Verzögerungen kämpfen, die wiederum durch Engpässe in den Häfen entstehen, und gleichzeitig steigen die Rohstoffpreise, was unsere Kalkulation für das kommende Jahr erheblich unter Druck setzt und uns zwingt, alle Verträge neu zu verhandeln.

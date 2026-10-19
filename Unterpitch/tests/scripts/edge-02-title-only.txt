@@ -1,0 +1,8 @@
+# edge-02-title-only: A section-divider slide with only a title must not break coverage.
+
+
+[Slide 1]
+Revenue is up 18 percent.
+
+[Slide 3]
+Next year we open a new office in Berlin.

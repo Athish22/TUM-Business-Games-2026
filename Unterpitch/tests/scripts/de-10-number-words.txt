@@ -1,0 +1,5 @@
+# de-10-number-words: BEKANNTE GRENZE: Zahl ausgeschrieben („zwölf“ statt „12“).
+
+
+[Folie 1]
+Der Umsatz stieg um zwölf Prozent.

@@ -1,0 +1,20 @@
+# de-04-content-align: Keine Folienwechsel-Zeitstempel: Folien müssen aus dem Inhalt zugeordnet werden.
+
+
+[Folie 1]
+Zunächst zur Ausgangslage.
+Wir haben eine hohe Fehlerquote in der Fertigung.
+Außerdem dauert die manuelle Prüfung viel zu lange.
+
+[Folie 2]
+Unsere Lösung ist eine KI-gestützte Bildprüfung.
+Dafür installieren wir eine Kamera an jeder Linie.
+
+[Folie 3]
+Die Ergebnisse aus dem Pilot sind sehr gut.
+Die Fehlerquote wurde halbiert.
+Und die Prüfzeit sank von 5 auf 1 Minute.
+
+[Folie 4]
+Als nächste Schritte wollen wir auf alle Werke ausrollen.
+Und natürlich brauchen wir eine Schulung der Mitarbeiter.

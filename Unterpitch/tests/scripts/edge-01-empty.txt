@@ -1,0 +1,3 @@
+# edge-01-empty: Nothing was said (silent recording). Must not crash; everything missed.
+
+(stay silent for ~10 seconds)

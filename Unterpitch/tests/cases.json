@@ -1,0 +1,303 @@
+[
+  {
+    "id": "de-01-perfect",
+    "lang": "de",
+    "about": "Alle Punkte abgedeckt, ruhiges Tempo, keine Füllwörter.",
+    "mode": "marks",
+    "wpm": 135,
+    "slides": [
+      { "title": "Projektziel", "points": ["Neues CRM bis März einführen", "Vertriebsprozesse vereinheitlichen"] },
+      { "title": "Zeitplan", "points": ["Pilotphase im Januar", "Rollout in drei Wellen"] },
+      { "title": "Budget", "points": ["Gesamtbudget 250.000 Euro", "Lizenzkosten 40%"] }
+    ],
+    "segments": [
+      { "slide": 1, "text": "Guten Tag zusammen. Unser Projektziel ist klar: wir wollen das neue CRM bis März einführen." },
+      { "slide": 1, "text": "Damit können wir unsere Vertriebsprozesse endlich vereinheitlichen." },
+      { "slide": 2, "text": "Zum Zeitplan: Die Pilotphase startet im Januar mit einem Team." },
+      { "slide": 2, "text": "Danach folgt der Rollout in drei Wellen." },
+      { "slide": 3, "text": "Das Gesamtbudget liegt bei 250.000 Euro." },
+      { "slide": 3, "text": "Davon entfallen 40 Prozent auf Lizenzkosten." }
+    ],
+    "expect": { "lang": "de", "coverage_min": 100, "filler_count": 0, "no_missed": true }
+  },
+  {
+    "id": "de-02-skipped",
+    "lang": "de",
+    "about": "Ein Punkt ausgelassen, einer nur angedeutet.",
+    "mode": "marks",
+    "wpm": 140,
+    "slides": [
+      { "title": "Marktanalyse", "points": ["Marktvolumen 2 Mrd. Euro", "Wachstum 7% pro Jahr", "Hauptwettbewerber: Firma Alpha"] },
+      { "title": "Strategie", "points": ["Fokus auf Mittelstand", "Partnerschaften mit Systemhäusern"] }
+    ],
+    "segments": [
+      { "slide": 1, "text": "Kommen wir zur Marktanalyse. Das Marktvolumen beträgt rund 2 Milliarden Euro." },
+      { "slide": 1, "text": "Der Markt wächst um 7 Prozent pro Jahr." },
+      { "slide": 1, "text": "Unser größter Konkurrent ist Alpha." },
+      { "slide": 2, "text": "Unsere Strategie: Wir setzen auf Partnerschaften mit Systemhäusern." }
+    ],
+    "expect": {
+      "lang": "de",
+      "slides": {
+        "1": { "covered": ["Marktvolumen 2 Mrd. Euro", "Wachstum 7% pro Jahr"], "partial": ["Hauptwettbewerber: Firma Alpha"], "missed": [] },
+        "2": { "covered": ["Partnerschaften mit Systemhäusern"], "partial": [], "missed": ["Fokus auf Mittelstand"] }
+      },
+      "fixes_include": ["Fokus auf Mittelstand"]
+    }
+  },
+  {
+    "id": "de-03-fillers-fast",
+    "lang": "de",
+    "about": "Viele Füllwörter und zu schnelles Sprechen.",
+    "mode": "marks",
+    "wpm": 210,
+    "slides": [
+      { "title": "Quartalsrückblick", "points": ["Absatz +9%", "Neue Filiale in Köln"] }
+    ],
+    "segments": [
+      { "slide": 1, "text": "Ähm, also, der Absatz ist, äh, um 9 Prozent gestiegen, ähm, das ist halt sozusagen ein gutes Ergebnis." },
+      { "slide": 1, "text": "Und, äh, wir haben quasi eine neue Filiale in Köln eröffnet, also, ähm, genau." }
+    ],
+    "expect": { "lang": "de", "filler_count": 10, "wpm_min": 166, "fixes_include": ["Füllwörter", "langsamer"], "no_missed": true }
+  },
+  {
+    "id": "de-04-content-align",
+    "lang": "de",
+    "about": "Keine Folienwechsel-Zeitstempel: Folien müssen aus dem Inhalt zugeordnet werden.",
+    "mode": "content",
+    "wpm": 135,
+    "slides": [
+      { "title": "Ausgangslage", "points": ["Hohe Fehlerquote in der Fertigung", "Manuelle Prüfung dauert zu lange"] },
+      { "title": "Lösung", "points": ["KI-gestützte Bildprüfung", "Kamera an jeder Linie"] },
+      { "title": "Ergebnisse Pilot", "points": ["Fehlerquote halbiert", "Prüfzeit von 5 auf 1 Minute"] },
+      { "title": "Nächste Schritte", "points": ["Ausrollen auf alle Werke", "Schulung der Mitarbeiter"] }
+    ],
+    "segments": [
+      { "slide": 1, "text": "Zunächst zur Ausgangslage." },
+      { "slide": 1, "text": "Wir haben eine hohe Fehlerquote in der Fertigung." },
+      { "slide": 1, "text": "Außerdem dauert die manuelle Prüfung viel zu lange." },
+      { "slide": 2, "text": "Unsere Lösung ist eine KI-gestützte Bildprüfung." },
+      { "slide": 2, "text": "Dafür installieren wir eine Kamera an jeder Linie." },
+      { "slide": 3, "text": "Die Ergebnisse aus dem Pilot sind sehr gut." },
+      { "slide": 3, "text": "Die Fehlerquote wurde halbiert." },
+      { "slide": 3, "text": "Und die Prüfzeit sank von 5 auf 1 Minute." },
+      { "slide": 4, "text": "Als nächste Schritte wollen wir auf alle Werke ausrollen." },
+      { "slide": 4, "text": "Und natürlich brauchen wir eine Schulung der Mitarbeiter." }
+    ],
+    "expect": { "lang": "de", "alignment_exact": true, "coverage_min": 100 }
+  },
+  {
+    "id": "de-05-backtrack",
+    "lang": "de",
+    "about": "Sprecher springt zurück zu einer früheren Folie.",
+    "mode": "marks",
+    "wpm": 130,
+    "slides": [
+      { "title": "Einleitung", "points": ["Agenda vorstellen"] },
+      { "title": "Problem", "points": ["Lieferzeiten zu lang"] },
+      { "title": "Fazit", "points": ["Schnelle Entscheidung nötig"] }
+    ],
+    "segments": [
+      { "slide": 1, "text": "Zuerst möchte ich die Agenda vorstellen." },
+      { "slide": 2, "text": "Das Problem: Die Lieferzeiten sind zu lang." },
+      { "slide": 1, "text": "Moment, zurück zur Agenda, ein Punkt fehlt noch." },
+      { "slide": 2, "text": "Also nochmal: Die Lieferzeiten sind das Hauptproblem." },
+      { "slide": 3, "text": "Mein Fazit: Wir brauchen eine schnelle Entscheidung, das ist nötig." }
+    ],
+    "expect": { "lang": "de", "alignment_exact": true, "coverage_min": 100 }
+  },
+  {
+    "id": "de-06-um-not-filler",
+    "lang": "de",
+    "about": "„um“ ist im Deutschen eine Präposition und darf nicht als Füllwort zählen.",
+    "mode": "marks",
+    "wpm": 130,
+    "slides": [{ "title": "Umsatz", "points": ["Umsatz +12%"] }],
+    "segments": [{ "slide": 1, "text": "Der Umsatz stieg um 12 Prozent, um genau zu sein um 12,3 Prozent." }],
+    "expect": { "lang": "de", "filler_count": 0, "coverage_min": 100 }
+  },
+  {
+    "id": "de-07-long-sentence",
+    "lang": "de",
+    "about": "Ein Bandwurmsatz soll als schwer verständlich markiert werden.",
+    "mode": "marks",
+    "wpm": 150,
+    "slides": [{ "title": "Risiken", "points": ["Lieferkette instabil", "Rohstoffpreise steigen"] }],
+    "segments": [
+      { "slide": 1, "text": "Die Lieferkette ist derzeit instabil, weil mehrere unserer Zulieferer in Asien mit Verzögerungen kämpfen, die wiederum durch Engpässe in den Häfen entstehen, und gleichzeitig steigen die Rohstoffpreise, was unsere Kalkulation für das kommende Jahr erheblich unter Druck setzt und uns zwingt, alle Verträge neu zu verhandeln." }
+    ],
+    "expect": { "lang": "de", "unclear_slides": [1], "fixes_include": ["langer Satz"], "coverage_min": 100 }
+  },
+  {
+    "id": "de-08-denglisch",
+    "lang": "de",
+    "about": "Deutscher Vortrag mit englischen Fachbegriffen (Forecast, Stakeholder, Go-Live).",
+    "mode": "marks",
+    "wpm": 135,
+    "slides": [{ "title": "Forecast Q4", "points": ["Forecast über Plan", "Stakeholder früh einbinden", "Go-Live im Dezember"] }],
+    "segments": [
+      { "slide": 1, "text": "Unser Forecast liegt aktuell über dem Plan." },
+      { "slide": 1, "text": "Wichtig ist, die Stakeholder früh einzubinden." },
+      { "slide": 1, "text": "Der Go-Live ist für Dezember geplant." }
+    ],
+    "expect": { "lang": "de", "coverage_min": 100 }
+  },
+  {
+    "id": "de-09-synonym",
+    "lang": "de",
+    "about": "BEKANNTE GRENZE: Punkt mit anderen Worten gesagt („neue Kunden“ statt „Neukunden“).",
+    "xfail": "Lexical matching; needs the semantic (embedding) tier.",
+    "mode": "marks",
+    "wpm": 135,
+    "slides": [{ "title": "Wachstum", "points": ["Treiber: Neukunden DACH"] }],
+    "segments": [{ "slide": 1, "text": "Das Wachstum kommt vor allem von neuen Kunden in Deutschland, Österreich und der Schweiz." }],
+    "expect": { "slides": { "1": { "covered": ["Treiber: Neukunden DACH"] } } }
+  },
+  {
+    "id": "de-10-number-words",
+    "lang": "de",
+    "about": "BEKANNTE GRENZE: Zahl ausgeschrieben („zwölf“ statt „12“).",
+    "xfail": "Number words are not normalised to digits yet.",
+    "mode": "marks",
+    "wpm": 135,
+    "slides": [{ "title": "Umsatz", "points": ["Umsatz +12%"] }],
+    "segments": [{ "slide": 1, "text": "Der Umsatz stieg um zwölf Prozent." }],
+    "expect": { "slides": { "1": { "covered": ["Umsatz +12%"] } } }
+  },
+  {
+    "id": "en-01-perfect",
+    "lang": "en",
+    "about": "All points covered at a comfortable pace.",
+    "mode": "marks",
+    "wpm": 140,
+    "slides": [
+      { "title": "Problem", "points": ["Onboarding takes three weeks", "Support tickets doubled"] },
+      { "title": "Solution", "points": ["Self-service setup wizard", "In-app guided tours"] },
+      { "title": "Impact", "points": ["Onboarding cut to 4 days", "Ticket volume down 35%"] }
+    ],
+    "segments": [
+      { "slide": 1, "text": "Here is the problem. Onboarding a new customer takes three weeks today." },
+      { "slide": 1, "text": "And our support tickets have doubled since last year." },
+      { "slide": 2, "text": "Our solution is a self-service setup wizard." },
+      { "slide": 2, "text": "We also add in-app guided tours." },
+      { "slide": 3, "text": "The impact: onboarding is cut to 4 days." },
+      { "slide": 3, "text": "And ticket volume goes down by 35 percent." }
+    ],
+    "expect": { "lang": "en", "coverage_min": 100, "filler_count": 0, "no_missed": true }
+  },
+  {
+    "id": "en-02-skipped",
+    "lang": "en",
+    "about": "Two points skipped, one only hinted at.",
+    "mode": "marks",
+    "wpm": 145,
+    "slides": [
+      { "title": "Pricing", "points": ["Three tiers: Basic, Pro, Enterprise", "Annual discount 20%", "Free trial 14 days"] },
+      { "title": "Go-to-market", "points": ["Partner channel in EMEA", "Launch event in May"] }
+    ],
+    "segments": [
+      { "slide": 1, "text": "Let me walk you through pricing. We offer three tiers: Basic, Pro and Enterprise." },
+      { "slide": 1, "text": "There is also a free trial." },
+      { "slide": 2, "text": "For go-to-market we will host a launch event in May." }
+    ],
+    "expect": {
+      "lang": "en",
+      "slides": {
+        "1": { "covered": ["Three tiers: Basic, Pro, Enterprise"], "partial": ["Free trial 14 days"], "missed": ["Annual discount 20%"] },
+        "2": { "covered": ["Launch event in May"], "partial": [], "missed": ["Partner channel in EMEA"] }
+      },
+      "fixes_include": ["Annual discount 20%", "Partner channel in EMEA"]
+    }
+  },
+  {
+    "id": "en-03-fillers",
+    "lang": "en",
+    "about": "Heavy use of um, uh, like, basically, you know, I mean.",
+    "mode": "marks",
+    "wpm": 150,
+    "slides": [{ "title": "Roadmap", "points": ["Mobile app in Q2", "API v2 in Q3"] }],
+    "segments": [
+      { "slide": 1, "text": "Um, so, basically, the mobile app is, uh, coming in Q2, you know." },
+      { "slide": 1, "text": "And, like, the API v2, um, is planned for Q3, I mean, roughly." }
+    ],
+    "expect": { "lang": "en", "filler_count": 7, "fixes_include": ["filler"], "no_missed": true }
+  },
+  {
+    "id": "en-04-slow",
+    "lang": "en",
+    "about": "Very slow delivery should trigger a pace hint.",
+    "mode": "marks",
+    "wpm": 80,
+    "slides": [{ "title": "Summary", "points": ["Revenue on track", "Hiring paused"] }],
+    "segments": [
+      { "slide": 1, "text": "To sum up, revenue is on track." },
+      { "slide": 1, "text": "Hiring is paused until next quarter." }
+    ],
+    "expect": { "lang": "en", "wpm_max": 109, "fixes_include": ["Pick up the pace"], "no_missed": true }
+  },
+  {
+    "id": "en-05-content-align",
+    "lang": "en",
+    "about": "Five slides, no slide-change timestamps, a repeated term (dark mode) on two slides.",
+    "mode": "content",
+    "wpm": 140,
+    "slides": [
+      { "title": "Welcome", "points": ["Team introduction", "Goals for today"] },
+      { "title": "Results", "points": ["Revenue up 18%", "Margin stable at 22%"] },
+      { "title": "Customer feedback", "points": ["NPS improved to 51", "Top request: dark mode"] },
+      { "title": "Risks", "points": ["Supplier delays", "Currency exposure"] },
+      { "title": "Next steps", "points": ["Hire two engineers", "Ship dark mode in June"] }
+    ],
+    "segments": [
+      { "slide": 1, "text": "Welcome everyone, let me start with a quick team introduction." },
+      { "slide": 1, "text": "Our goals for today are simple." },
+      { "slide": 2, "text": "First the results. Revenue is up 18 percent." },
+      { "slide": 2, "text": "Margin stayed stable at 22 percent." },
+      { "slide": 3, "text": "Customer feedback was strong, NPS improved to 51." },
+      { "slide": 3, "text": "The top request was dark mode." },
+      { "slide": 4, "text": "There are two risks: supplier delays," },
+      { "slide": 4, "text": "and our currency exposure." },
+      { "slide": 5, "text": "Next steps: we will hire two engineers" },
+      { "slide": 5, "text": "and ship dark mode in June." }
+    ],
+    "expect": { "lang": "en", "alignment_exact": true, "coverage_min": 100 }
+  },
+  {
+    "id": "en-06-paraphrase",
+    "lang": "en",
+    "about": "KNOWN LIMITATION: point said in completely different words.",
+    "xfail": "Lexical matching; needs the semantic (embedding) tier.",
+    "mode": "marks",
+    "wpm": 140,
+    "slides": [{ "title": "Retention", "points": ["Reduce churn by 10%"] }],
+    "segments": [{ "slide": 1, "text": "We want ten percent fewer customers leaving us." }],
+    "expect": { "slides": { "1": { "covered": ["Reduce churn by 10%"] } } }
+  },
+  {
+    "id": "edge-01-empty",
+    "lang": "en",
+    "about": "Nothing was said (silent recording). Must not crash; everything missed.",
+    "mode": "marks",
+    "wpm": 140,
+    "slides": [{ "title": "Intro", "points": ["Welcome", "Agenda"] }],
+    "segments": [],
+    "expect": { "coverage_max": 0, "wpm_max": 0 }
+  },
+  {
+    "id": "edge-02-title-only",
+    "lang": "en",
+    "about": "A section-divider slide with only a title must not break coverage.",
+    "mode": "content",
+    "wpm": 140,
+    "slides": [
+      { "title": "Results", "points": ["Revenue up 18%"] },
+      { "title": "Part two", "points": [] },
+      { "title": "Outlook", "points": ["New office in Berlin"] }
+    ],
+    "segments": [
+      { "slide": 1, "text": "Revenue is up 18 percent." },
+      { "slide": 3, "text": "Next year we open a new office in Berlin." }
+    ],
+    "expect": { "lang": "en", "coverage_min": 100 }
+  }
+]

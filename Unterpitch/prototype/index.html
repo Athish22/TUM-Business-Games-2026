@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rehearsal Coach</title>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<style>
+  :root {
+    --bg: #f6f5f1; --panel: #ffffff; --ink: #1d1f22; --muted: #6a6f76; --line: #e3e1da;
+    --accent: #2f5bd3; --accent-ink: #ffffff; --soft: #eef2fc;
+    --ok: #1f7a4d; --ok-bg: #e5f4ec; --warn: #9a6200; --warn-bg: #fdf1dc; --bad: #b3261e; --bad-bg: #fbe6e4;
+    --rec: #d93025;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121417; --panel: #1b1e22; --ink: #e8e9eb; --muted: #9aa0a8; --line: #2c3036;
+      --accent: #7ea2ff; --accent-ink: #0f1420; --soft: #1f2738;
+      --ok: #6fd3a0; --ok-bg: #16301f; --warn: #f0be6a; --warn-bg: #33270f; --bad: #ff8a80; --bad-bg: #3a1917;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { padding: 20px 24px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; background: var(--panel); }
+  .logo { width: 34px; height: 34px; border-radius: 9px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-weight: 700; }
+  header h1 { font-size: 18px; margin: 0; }
+  header p { margin: 0; color: var(--muted); font-size: 13px; }
+  .badge { margin-left: auto; font-size: 12px; padding: 6px 10px; border-radius: 99px; background: var(--ok-bg); color: var(--ok); font-weight: 600; }
+  main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; display: grid; gap: 20px; }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 10px; }
+  .step { width: 24px; height: 24px; border-radius: 50%; background: var(--soft); color: var(--accent); display: grid; place-items: center; font-size: 13px; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  button, .filebtn { font: inherit; border: 1px solid var(--line); background: var(--panel); color: var(--ink); padding: 8px 14px; border-radius: 9px; cursor: pointer; }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  button.rec { background: var(--rec); color: #fff; border-color: var(--rec); font-weight: 600; }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  input[type=file] { display: none; }
+  select { font: inherit; padding: 7px 10px; border-radius: 9px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); }
+  label.inline { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; }
+  .muted { color: var(--muted); font-size: 13px; }
+  .deck { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 14px; }
+  .thumb { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 13px; }
+  .thumb b { display: block; margin-bottom: 4px; }
+  .thumb ul { margin: 0; padding-left: 16px; color: var(--muted); }
+  .tabs { display: flex; gap: 4px; margin-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .tab { border: none; border-bottom: 2px solid transparent; border-radius: 0; background: none; padding: 8px 12px; color: var(--muted); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  .stage { display: none; margin-top: 16px; border: 1px solid var(--line); border-radius: 12px; padding: 18px; background: var(--bg); }
+  .stage.on { display: block; }
+  .stage .slide { background: var(--panel); border-radius: 10px; padding: 24px; min-height: 180px; border: 1px solid var(--line); }
+  .stage .slide h3 { margin: 0 0 10px; font-size: 22px; }
+  .stage .slide ul { font-size: 17px; }
+  .timer { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rec); animation: pulse 1s infinite; }
+  @keyframes pulse { 50% { opacity: .3; } }
+  .status { display: none; padding: 12px 14px; border-radius: 10px; background: var(--soft); font-size: 14px; }
+  .status.on { display: block; }
+  .status.err { background: var(--bad-bg); color: var(--bad); }
+  .bar { height: 6px; background: var(--line); border-radius: 99px; overflow: hidden; margin-top: 8px; }
+  .bar > div { height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+  .tile { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .tile .v { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .tile .k { font-size: 12px; color: var(--muted); }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+  @media (max-width: 700px) { .cols { grid-template-columns: 1fr; } }
+  .box { border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; }
+  .box h4 { margin: 0 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .box ol, .box ul { margin: 0; padding-left: 18px; }
+  .slides { display: grid; gap: 10px; margin-top: 14px; }
+  .sf { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .sf .head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+  .chip { font-size: 13px; padding: 3px 10px; border-radius: 99px; }
+  .chip.ok { background: var(--ok-bg); color: var(--ok); }
+  .chip.partial { background: var(--warn-bg); color: var(--warn); }
+  .chip.miss { background: var(--bad-bg); color: var(--bad); }
+  .sugg { font-size: 14px; padding: 8px 12px; border-left: 3px solid var(--accent); background: var(--soft); border-radius: 4px; }
+  .quote { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 6px; }
+  .q { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .q:last-child { border-bottom: none; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 99px; background: var(--soft); color: var(--accent); margin-left: 6px; }
+  details summary { cursor: pointer; color: var(--muted); font-size: 13px; margin-top: 8px; }
+  .seg { font-size: 13px; padding: 3px 0; }
+  .seg span { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 8px; }
+  #report { display: none; }
+  #report.on { display: block; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">RC</div>
+  <div>
+    <h1>Rehearsal Coach</h1>
+    <p>Prototype · slide-aware feedback for German &amp; English presentations</p>
+  </div>
+  <div class="badge">🔒 Processed locally · audio never leaves this device</div>
+</header>
+
+<main>
+  <section>
+    <h2><span class="step">1</span>Deck</h2>
+    <div class="row">
+      <label class="filebtn">Upload .pptx<input type="file" id="deckFile" accept=".pptx,.json"></label>
+      <button id="demoDeck">Use demo deck</button>
+      <span class="muted" id="deckInfo">No deck loaded.</span>
+    </div>
+    <div class="deck" id="deckView"></div>
+  </section>
+
+  <section>
+    <h2><span class="step">2</span>Rehearse</h2>
+    <div class="tabs">
+      <button class="tab active" data-tab="rec">Record live</button>
+      <button class="tab" data-tab="upload">Upload audio</button>
+      <button class="tab" data-tab="demo">Demo rehearsal</button>
+    </div>
+
+    <div class="row" id="settings">
+      <label class="inline">Speech model
+        <select id="model">
+          <option value="Xenova/whisper-tiny">Tiny · fastest (~40 MB)</option>
+          <option value="Xenova/whisper-base" selected>Base · balanced (~80 MB)</option>
+          <option value="Xenova/whisper-small">Small · best German (~250 MB)</option>
+        </select>
+      </label>
+      <label class="inline">Language
+        <select id="lang">
+          <option value="">Auto</option>
+          <option value="german">Deutsch</option>
+          <option value="english">English</option>
+        </select>
+      </label>
+      <label class="inline"><input type="checkbox" id="webgpu"> Use GPU (WebGPU)</label>
+    </div>
+
+    <div data-pane="rec" style="margin-top:14px">
+      <div class="row">
+        <button class="rec" id="recStart" disabled>● Start rehearsal</button>
+        <span class="muted">Click through your slides while you talk (← → keys). Slide changes are timestamped.</span>
+      </div>
+      <div class="stage" id="stage">
+        <div class="row" style="justify-content:space-between;margin-bottom:12px">
+          <div class="row"><span class="dot"></span><span class="timer" id="timer">00:00</span><span class="muted" id="slideNo"></span></div>
+          <div class="row">
+            <button id="prev">◀ Prev</button>
+            <button id="next">Next ▶</button>
+            <button class="primary" id="recStop">■ Stop &amp; analyse</button>
+          </div>
+        </div>
+        <div class="slide" id="stageSlide"></div>
+      </div>
+    </div>
+
+    <div data-pane="upload" style="display:none;margin-top:14px">
+      <div class="row">
+        <label class="filebtn">Choose audio file<input type="file" id="audioFile" accept="audio/*,video/*"></label>
+        <span class="muted" id="audioInfo">MP3, WAV, M4A, WebM… Slides are matched to the speech automatically.</span>
+        <button class="primary" id="analyseUpload" disabled>Analyse</button>
+      </div>
+    </div>
+
+    <div data-pane="demo" style="display:none;margin-top:14px">
+      <div class="row">
+        <button class="primary" id="runDemo">Run demo rehearsal</button>
+        <span class="muted">A pre-transcribed German rehearsal of the demo deck. No model download needed.</span>
+      </div>
+    </div>
+
+    <div class="status" id="status" style="margin-top:14px">
+      <div id="statusMsg"></div>
+      <div class="bar"><div id="bar"></div></div>
+    </div>
+  </section>
+
+  <section id="report">
+    <div class="row" style="justify-content:space-between;margin-bottom:12px">
+      <h2 style="margin:0"><span class="step">3</span>Rehearsal report</h2>
+      <button id="export">Export JSON</button>
+    </div>
+    <div class="tiles" id="tiles"></div>
+    <div class="cols">
+      <div class="box"><h4 id="hFixes">Top 3 fixes</h4><ol id="fixes"></ol></div>
+      <div class="box"><h4 id="hStrengths">Strengths</h4><ul id="strengths"></ul></div>
+    </div>
+    <div class="slides" id="slideFb"></div>
+    <div class="box" style="margin-top:14px">
+      <h4 id="hQ">Likely audience questions</h4>
+      <div id="questions"></div>
+      <div class="muted" style="margin-top:6px">Rule-based preview. The local LLM tier will generate these from the deck and the transcript.</div>
+    </div>
+    <details><summary>Full transcript</summary><div id="transcript" style="margin-top:8px"></div></details>
+  </section>
+</main>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

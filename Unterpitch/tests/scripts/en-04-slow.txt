@@ -1,0 +1,6 @@
+# en-04-slow: Very slow delivery should trigger a pace hint.
+
+
+[Slide 1]
+To sum up, revenue is on track.
+Hiring is paused until next quarter.

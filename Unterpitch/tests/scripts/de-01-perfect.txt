@@ -1,0 +1,14 @@
+# de-01-perfect: Alle Punkte abgedeckt, ruhiges Tempo, keine Füllwörter.
+
+
+[Folie 1]
+Guten Tag zusammen. Unser Projektziel ist klar: wir wollen das neue CRM bis März einführen.
+Damit können wir unsere Vertriebsprozesse endlich vereinheitlichen.
+
+[Folie 2]
+Zum Zeitplan: Die Pilotphase startet im Januar mit einem Team.
+Danach folgt der Rollout in drei Wellen.
+
+[Folie 3]
+Das Gesamtbudget liegt bei 250.000 Euro.
+Davon entfallen 40 Prozent auf Lizenzkosten.

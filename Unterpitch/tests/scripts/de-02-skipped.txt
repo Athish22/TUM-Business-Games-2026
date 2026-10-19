@@ -1,0 +1,10 @@
+# de-02-skipped: Ein Punkt ausgelassen, einer nur angedeutet.
+
+
+[Folie 1]
+Kommen wir zur Marktanalyse. Das Marktvolumen beträgt rund 2 Milliarden Euro.
+Der Markt wächst um 7 Prozent pro Jahr.
+Unser größter Konkurrent ist Alpha.
+
+[Folie 2]
+Unsere Strategie: Wir setzen auf Partnerschaften mit Systemhäusern.

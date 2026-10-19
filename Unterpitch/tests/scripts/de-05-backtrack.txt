@@ -1,0 +1,17 @@
+# de-05-backtrack: Sprecher springt zurück zu einer früheren Folie.
+
+
+[Folie 1]
+Zuerst möchte ich die Agenda vorstellen.
+
+[Folie 2]
+Das Problem: Die Lieferzeiten sind zu lang.
+
+[Folie 1]
+Moment, zurück zur Agenda, ein Punkt fehlt noch.
+
+[Folie 2]
+Also nochmal: Die Lieferzeiten sind das Hauptproblem.
+
+[Folie 3]
+Mein Fazit: Wir brauchen eine schnelle Entscheidung, das ist nötig.

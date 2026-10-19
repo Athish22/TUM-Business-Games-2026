@@ -1,0 +1,5 @@
+# de-06-um-not-filler: „um“ ist im Deutschen eine Präposition und darf nicht als Füllwort zählen.
+
+
+[Folie 1]
+Der Umsatz stieg um 12 Prozent, um genau zu sein um 12,3 Prozent.
