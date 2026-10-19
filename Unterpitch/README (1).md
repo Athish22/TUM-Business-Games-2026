@@ -1,5 +1,8 @@
 # Offline Rehearsal Coach — LLM Module
 
+Check out [UnterPitch](https://fluent-pitcher.lovable.app).
+
+
 The LLM module of an offline, multilingual presentation rehearsal coach. It takes the **slide content** of a deck and the **timestamped transcript** of a rehearsal, and produces:
 
 1. **Content feedback**: which key points of each slide were covered, missed or unclear, plus concrete suggestions.
